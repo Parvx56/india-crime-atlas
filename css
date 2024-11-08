@@ -62,5 +62,5 @@ canvas {
     display: none;
     pointer-events: none;
     white-space: nowrap;
-    z-index: 10;
+    z-index: 10;
 }
