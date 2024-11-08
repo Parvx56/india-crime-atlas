@@ -6,29 +6,78 @@ const crimeData = {
         image: "https://wheremaps.com/wp-content/uploads/2023/04/Maharashtra-Division-Map-768x637.png",
         coordinates: { x: 15, y: 10 },
         tooltip: "Theft and cybercrime hotspot",
-        mapTooltip: "Maharashtra State Crime Overview"
-  
+        mapTooltip: "Maharashtra State Crime Overview",
+        details: {
+            accidents: 5000,
+            murders: 300,
+            thefts: 7000,
+            cybercrimes: 2000
+        }
     },
     "Delhi": {
         description: "Delhi has significant rates of violent crime.",
-        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Flag_of_Delhi.svg/320px-Flag_of_Delhi.svg.png",
+        image: "https://i.pinimg.com/564x/b4/d2/2e/b4d22e106f753436c9b99a35af2ab88d.jpg",
         coordinates: { x: 160, y: 90 },
         tooltip: "Violent crime hotspot",
-        mapTooltip: "Delhi State Crime Overview"
+        mapTooltip: "Delhi State Crime Overview",
+        details: {
+            accidents: 2500,
+            murders: 400,
+            thefts: 5000,
+            cybercrimes: 1500
+        }
     },
     "Karnataka": {
         description: "Karnataka has increasing incidents of property crimes.",
-        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Flag_of_Karnataka.svg/320px-Flag_of_Karnataka.svg.png",
+        image: "https://i.pinimg.com/564x/78/94/d3/7894d3e65a5e48b14fb1df2ccef6a0a9.jpg",
         coordinates: { x: 140, y: 110 },
         tooltip: "Property crime hotspot",
-        mapTooltip: "Karnataka State Crime Overview"
+        mapTooltip: "Karnataka State Crime Overview",
+        details: {
+            accidents: 3500,
+            murders: 150,
+            thefts: 4000,
+            cybercrimes: 1000
+        }
+    },
+      "Kerala": {
+        description: "Kerala has increasing incidents of property crimes.",
+        image: "https://i.pinimg.com/564x/0f/ba/9b/0fba9bef8d631d81f7b044aa66fda18e.jpg",
+        coordinates: { x: 140, y: 110 },
+        tooltip: "Property crime hotspot",
+        mapTooltip: "Kerala State Crime Overview",
+        details: {
+            accidents: 3500,
+            murders: 150,
+            thefts: 4000,
+            cybercrimes: 1000
+        }
+    },
+        "Chhattisgarh": {
+        description: "Chhattisgarh has increasing incidents of property crimes.",
+        image: "https://i.pinimg.com/564x/6d/82/0b/6d820bb7825c2ab33ad28d74896471e9.jpg",
+        coordinates: { x: 140, y: 110 },
+        tooltip: "Property crime hotspot",
+        mapTooltip: "Chhattisgarh State Crime Overview",
+        details: {
+            accidents: 3500,
+            murders: 150,
+            thefts: 4000,
+            cybercrimes: 1000
+        }
     },
     "Tamil Nadu": {
         description: "Tamil Nadu has moderate crime rates overall.",
-        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Flag_of_Tamil_Nadu.svg/320px-Flag_of_Tamil_Nadu.svg.png",
+        image: "https://www.tn.gov.in/sites/default/files/tndistrict_1.png",
         coordinates: { x: 120, y: 130 },
         tooltip: "Moderate crime area",
-        mapTooltip: "Tamil Nadu State Crime Overview"
+        mapTooltip: "Tamil Nadu State Crime Overview",
+        details: {
+            accidents: 2000,
+            murders: 100,
+            thefts: 3000,
+            cybercrimes: 800
+        }
     }
 };
 
@@ -40,11 +89,11 @@ function showCrimeData() {
     dataDisplay.innerHTML = '';
 
     if (crimeData[state]) {
-        const { description, image, coordinates, tooltip, mapTooltip } = crimeData[state];
+        const { description, image, coordinates, tooltip, mapTooltip, details } = crimeData[state];
         dataDisplay.innerHTML = `<h2>Crime Data for ${state}</h2>
                                  <p>${description}</p>
                                  <canvas id="crimeCanvas" width="320" height="240"></canvas>
-                                 <div id="tooltip" class="tooltip">${mapTooltip}</div>`;
+                                 <div id="tooltip" class="tooltip"></div>`;
 
         const canvas = document.getElementById('crimeCanvas');
         const ctx = canvas.getContext('2d');
@@ -62,7 +111,16 @@ function showCrimeData() {
             ctx.fillStyle = 'red';
             ctx.fill();
 
-            // Show the general tooltip when hovering over the canvas
+            // Add tooltip content for the entire map with details
+            const fullTooltipContent = `
+                <strong>${mapTooltip}</strong><br>
+                Accidents: ${details.accidents}<br>
+                Murders: ${details.murders}<br>
+                Thefts: ${details.thefts}<br>
+                Cybercrimes: ${details.cybercrimes}
+            `;
+
+            // Event listener to display tooltip with all details when hovering over the map
             canvas.addEventListener('mousemove', (event) => {
                 const rect = canvas.getBoundingClientRect();
                 const mouseX = event.clientX - rect.left;
@@ -70,20 +128,20 @@ function showCrimeData() {
 
                 // Check if the mouse is over the red dot
                 const distance = Math.sqrt(
-                    (mouseX - coordinates.x) * 2 + (mouseY - coordinates.y) * 2
+                    (mouseX - coordinates.x) ** 2 + (mouseY - coordinates.y) ** 2
                 );
 
                 // Show specific tooltip when hovering over the red dot
                 if (distance < 5) {
-                    tooltipDiv.textContent = tooltip;
+                    tooltipDiv.innerHTML = tooltip;
                 } else {
-                    tooltipDiv.textContent = mapTooltip;
+                    tooltipDiv.innerHTML = fullTooltipContent;
                 }
 
                 // Position the tooltip near the cursor
                 tooltipDiv.style.display = 'block';
-                tooltipDiv.style.left = ${event.pageX + 10}px;
-                tooltipDiv.style.top = ${event.pageY + 10}px;
+                tooltipDiv.style.left = `${event.pageX + 10}px`;
+                tooltipDiv.style.top = `${event.pageY + 10}px`;
             });
 
             // Hide tooltip when mouse leaves the canvas
@@ -95,3 +153,4 @@ function showCrimeData() {
         dataDisplay.innerHTML = '<p>Please select a valid state.</p>';
     }
 }
+
