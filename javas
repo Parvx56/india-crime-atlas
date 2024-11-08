@@ -1,0 +1,97 @@
+// script.js
+
+const crimeData = {
+    "Maharashtra": {
+        description: "Maharashtra has high crime rates related to theft and cybercrime.",
+        image: "https://wheremaps.com/wp-content/uploads/2023/04/Maharashtra-Division-Map-768x637.png",
+        coordinates: { x: 15, y: 10 },
+        tooltip: "Theft and cybercrime hotspot",
+        mapTooltip: "Maharashtra State Crime Overview"
+  
+    },
+    "Delhi": {
+        description: "Delhi has significant rates of violent crime.",
+        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Flag_of_Delhi.svg/320px-Flag_of_Delhi.svg.png",
+        coordinates: { x: 160, y: 90 },
+        tooltip: "Violent crime hotspot",
+        mapTooltip: "Delhi State Crime Overview"
+    },
+    "Karnataka": {
+        description: "Karnataka has increasing incidents of property crimes.",
+        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Flag_of_Karnataka.svg/320px-Flag_of_Karnataka.svg.png",
+        coordinates: { x: 140, y: 110 },
+        tooltip: "Property crime hotspot",
+        mapTooltip: "Karnataka State Crime Overview"
+    },
+    "Tamil Nadu": {
+        description: "Tamil Nadu has moderate crime rates overall.",
+        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Flag_of_Tamil_Nadu.svg/320px-Flag_of_Tamil_Nadu.svg.png",
+        coordinates: { x: 120, y: 130 },
+        tooltip: "Moderate crime area",
+        mapTooltip: "Tamil Nadu State Crime Overview"
+    }
+};
+
+function showCrimeData() {
+    const state = document.getElementById('state').value;
+    const dataDisplay = document.getElementById('dataDisplay');
+
+    // Clear previous data
+    dataDisplay.innerHTML = '';
+
+    if (crimeData[state]) {
+        const { description, image, coordinates, tooltip, mapTooltip } = crimeData[state];
+        dataDisplay.innerHTML = `<h2>Crime Data for ${state}</h2>
+                                 <p>${description}</p>
+                                 <canvas id="crimeCanvas" width="320" height="240"></canvas>
+                                 <div id="tooltip" class="tooltip">${mapTooltip}</div>`;
+
+        const canvas = document.getElementById('crimeCanvas');
+        const ctx = canvas.getContext('2d');
+        const tooltipDiv = document.getElementById('tooltip');
+
+        // Draw the image
+        const img = new Image();
+        img.src = image;
+        img.onload = () => {
+            ctx.drawImage(img, 0, 0, 320, 240);
+
+            // Draw the red dot
+            ctx.beginPath();
+            ctx.arc(coordinates.x, coordinates.y, 5, 0, Math.PI * 2, true);
+            ctx.fillStyle = 'red';
+            ctx.fill();
+
+            // Show the general tooltip when hovering over the canvas
+            canvas.addEventListener('mousemove', (event) => {
+                const rect = canvas.getBoundingClientRect();
+                const mouseX = event.clientX - rect.left;
+                const mouseY = event.clientY - rect.top;
+
+                // Check if the mouse is over the red dot
+                const distance = Math.sqrt(
+                    (mouseX - coordinates.x) * 2 + (mouseY - coordinates.y) * 2
+                );
+
+                // Show specific tooltip when hovering over the red dot
+                if (distance < 5) {
+                    tooltipDiv.textContent = tooltip;
+                } else {
+                    tooltipDiv.textContent = mapTooltip;
+                }
+
+                // Position the tooltip near the cursor
+                tooltipDiv.style.display = 'block';
+                tooltipDiv.style.left = ${event.pageX + 10}px;
+                tooltipDiv.style.top = ${event.pageY + 10}px;
+            });
+
+            // Hide tooltip when mouse leaves the canvas
+            canvas.addEventListener('mouseleave', () => {
+                tooltipDiv.style.display = 'none';
+            });
+        };
+    } else {
+        dataDisplay.innerHTML = '<p>Please select a valid state.</p>';
+    }
+}
