@@ -1,6 +1,125 @@
 // script.js
 
 const crimeData = {
+    "Andaman and Nicobar Islands": {
+        description: "Crime statistics for Andaman and Nicobar Islands.",
+        image: "path_to_image",
+        coordinates: { x: 10, y: 50 },
+        tooltip: "Overview of crimes in Andaman and Nicobar Islands",
+        mapTooltip: "Andaman and Nicobar Islands Crime Overview",
+        details: {
+            accidents: 50,
+            murders: 5,
+            thefts: 100,
+            cybercrimes: 20
+        }
+    },
+    "Andhra Pradesh": {
+        description: "Crime statistics for Andhra Pradesh.",
+        image: "path_to_image",
+        coordinates: { x: 60, y: 60 },
+        tooltip: "Overview of crimes in Andhra Pradesh",
+        mapTooltip: "Andhra Pradesh Crime Overview",
+        details: {
+            accidents: 600,
+            murders: 70,
+            thefts: 900,
+            cybercrimes: 100
+        }
+    },
+    "Arunachal Pradesh": {
+        description: "Crime statistics for Arunachal Pradesh.",
+        image: "path_to_image",
+        coordinates: { x: 70, y: 20 },
+        tooltip: "Overview of crimes in Arunachal Pradesh",
+        mapTooltip: "Arunachal Pradesh Crime Overview",
+        details: {
+            accidents: 100,
+            murders: 10,
+            thefts: 150,
+            cybercrimes: 25
+        }
+    },
+    "Assam": {
+        description: "Crime statistics for Assam.",
+        image: "path_to_image",
+        coordinates: { x: 80, y: 30 },
+        tooltip: "Overview of crimes in Assam",
+        mapTooltip: "Assam Crime Overview",
+        details: {
+            accidents: 800,
+            murders: 90,
+            thefts: 1200,
+            cybercrimes: 150
+        }
+    },
+    "Bihar": {
+        description: "Crime statistics for Bihar.",
+        image: "path_to_image",
+        coordinates: { x: 90, y: 40 },
+        tooltip: "Overview of crimes in Bihar",
+        mapTooltip: "Bihar Crime Overview",
+        details: {
+            accidents: 1500,
+            murders: 200,
+            thefts: 1800,
+            cybercrimes: 250
+        }
+    },
+    "Chandigarh": {
+        description: "Crime statistics for Chandigarh.",
+        image: "path_to_image",
+        coordinates: { x: 100, y: 50 },
+        tooltip: "Overview of crimes in Chandigarh",
+        mapTooltip: "Chandigarh Crime Overview",
+        details: {
+            accidents: 300,
+            murders: 30,
+            thefts: 400,
+            cybercrimes: 50
+        }
+    },
+    "Chhattisgarh": {
+        description: "Crime statistics for Chhattisgarh.",
+        image: "path_to_image",
+        coordinates: { x: 110, y: 60 },
+        tooltip: "Overview of crimes in Chhattisgarh",
+        mapTooltip: "Chhattisgarh Crime Overview",
+        details: {
+            accidents: 700,
+            murders: 100,
+            thefts: 800,
+            cybercrimes: 120
+        }
+    },
+    "Dadra and Nagar Haveli and Daman and Diu": {
+        description: "Crime statistics for Dadra and Nagar Haveli and Daman and Diu.",
+        image: "path_to_image",
+        coordinates: { x: 120, y: 20 },
+        tooltip: "Overview of crimes in Dadra and Nagar Haveli and Daman and Diu",
+        mapTooltip: "Dadra and Nagar Haveli and Daman and Diu Crime Overview",
+        details: {
+            accidents: 200,
+            murders: 20,
+            thefts: 250,
+            cybercrimes: 30
+        }
+    },
+    "Delhi": {
+        description: "Delhi has significant rates of violent crime.",
+        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Flag_of_Delhi.svg/320px-Flag_of_Delhi.svg.png",
+        coordinates: { x: 160, y: 90 },
+        tooltip: "Violent crime hotspot",
+        mapTooltip: "Delhi State Crime Overview",
+        details: {
+            accidents: 2500,
+            murders: 400,
+            thefts: 5000,
+            cybercrimes: 1500
+        }
+    },
+    // Add entries for remaining states and Union Territories here...
+
     "Maharashtra": {
         description: "Maharashtra has high crime rates related to theft and cybercrime.",
         image: "https://wheremaps.com/wp-content/uploads/2023/04/Maharashtra-Division-Map-768x637.png",
@@ -14,71 +133,7 @@ const crimeData = {
             cybercrimes: 2000
         }
     },
-    "Delhi": {
-        description: "Delhi has significant rates of violent crime.",
-        image: "https://i.pinimg.com/564x/b4/d2/2e/b4d22e106f753436c9b99a35af2ab88d.jpg",
-        coordinates: { x: 160, y: 90 },
-        tooltip: "Violent crime hotspot",
-        mapTooltip: "Delhi State Crime Overview",
-        details: {
-            accidents: 2500,
-            murders: 400,
-            thefts: 5000,
-            cybercrimes: 1500
-        }
-    },
-    "Karnataka": {
-        description: "Karnataka has increasing incidents of property crimes.",
-        image: "https://i.pinimg.com/564x/78/94/d3/7894d3e65a5e48b14fb1df2ccef6a0a9.jpg",
-        coordinates: { x: 140, y: 110 },
-        tooltip: "Property crime hotspot",
-        mapTooltip: "Karnataka State Crime Overview",
-        details: {
-            accidents: 3500,
-            murders: 150,
-            thefts: 4000,
-            cybercrimes: 1000
-        }
-    },
-      "Kerala": {
-        description: "Kerala has increasing incidents of property crimes.",
-        image: "https://i.pinimg.com/564x/0f/ba/9b/0fba9bef8d631d81f7b044aa66fda18e.jpg",
-        coordinates: { x: 140, y: 110 },
-        tooltip: "Property crime hotspot",
-        mapTooltip: "Kerala State Crime Overview",
-        details: {
-            accidents: 3500,
-            murders: 150,
-            thefts: 4000,
-            cybercrimes: 1000
-        }
-    },
-        "Chhattisgarh": {
-        description: "Chhattisgarh has increasing incidents of property crimes.",
-        image: "https://i.pinimg.com/564x/6d/82/0b/6d820bb7825c2ab33ad28d74896471e9.jpg",
-        coordinates: { x: 140, y: 110 },
-        tooltip: "Property crime hotspot",
-        mapTooltip: "Chhattisgarh State Crime Overview",
-        details: {
-            accidents: 3500,
-            murders: 150,
-            thefts: 4000,
-            cybercrimes: 1000
-        }
-    },
-    "Tamil Nadu": {
-        description: "Tamil Nadu has moderate crime rates overall.",
-        image: "https://www.tn.gov.in/sites/default/files/tndistrict_1.png",
-        coordinates: { x: 120, y: 130 },
-        tooltip: "Moderate crime area",
-        mapTooltip: "Tamil Nadu State Crime Overview",
-        details: {
-            accidents: 2000,
-            murders: 100,
-            thefts: 3000,
-            cybercrimes: 800
-        }
-    }
+    // Continue adding for all remaining states and UTs...
 };
 
 function showCrimeData() {
@@ -150,7 +205,8 @@ function showCrimeData() {
             });
         };
     } else {
-        dataDisplay.innerHTML = '<p>Please select a valid state.</p>';
-    }
+        dataDisplay.innerHTML = '<p>Please select a valid state or UT.</p>';
+    }
 }
+
 
