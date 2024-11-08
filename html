@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crime Atlas India</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Crime Atlas India</h1>
+        <div class="filter">
+            <label for="state">Select State:</label>
+            <select id="state" onchange="showCrimeData()">
+                <option value="">--Select a State--</option>
+                <option value="Maharashtra">Maharashtra</option>
+                <option value="Delhi">Delhi</option>
+                <option value="Karnataka">Karnataka</option>
+                <option value="Tamil Nadu">Tamil Nadu</option>
+                <!-- Add more states as needed -->
+            </select>
+        </div>
+        <div id="dataDisplay" class="data-display"></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
