@@ -1,5 +1,19 @@
 // script.js
 
+async function getCrimeData(state,cb) {
+  const rawResponse = await fetch('https://httpbin.org/post', {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({state: state})
+  });
+  const content = await rawResponse.json();
+
+  cb(content)
+}
+
 function showCrimeData() {
     const state = document.getElementById('state').value;
     const dataDisplay = document.getElementById('dataDisplay');
@@ -7,8 +21,8 @@ function showCrimeData() {
     // Clear previous data
     dataDisplay.innerHTML = '';
 
-    if (crimeData[state]) {
-        const { description, image, coordinates, tooltip, mapTooltip, details } = crimeData[state];
+    cb(state, data=>{
+        const { description, image, coordinates, tooltip, mapTooltip, details } = data;
         dataDisplay.innerHTML = `<h2>Crime Data for ${state}</h2>
                                  <p>${description}</p>
                                  <canvas id="crimeCanvas" width="320" height="240"></canvas>
@@ -68,9 +82,8 @@ function showCrimeData() {
                 tooltipDiv.style.display = 'none';
             });
         };
-    } else {
-        dataDisplay.innerHTML = '<p>Please select a valid state or UT.</p>';
     }
+        // dataDisplay.innerHTML = '<p>Please select a valid state or UT.</p>';
 }
 
 
