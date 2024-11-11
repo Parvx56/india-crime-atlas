@@ -1,7 +1,7 @@
 // script.js
 
 async function getCrimeData(state,cb) {
-  const rawResponse = await fetch('https://httpbin.org/post', {
+  const rawResponse = await fetch('https://crime-atlas-indian-backend.vercel.app/api/get-crime-data', {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
@@ -21,7 +21,7 @@ function showCrimeData() {
     // Clear previous data
     dataDisplay.innerHTML = '';
 
-    cb(state, data=>{
+    getCrimeData(state, data=>{
         const { description, image, coordinates, tooltip, mapTooltip, details } = data;
         dataDisplay.innerHTML = `<h2>Crime Data for ${state}</h2>
                                  <p>${description}</p>
