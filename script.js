@@ -8,10 +8,13 @@ async function getCrimeData(state,cb) {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({state: state})
-  });
-  const content = await rawResponse.json();
-
-  cb(content)
+  });   
+  try {
+    const content = await rawResponse.json();
+    cb(content)
+  } catch(e) {
+    dataDisplay.innerHTML = '<p>Please select a valid state or UT.</p>';
+  }
 }
 
 function showCrimeData() {
@@ -83,7 +86,6 @@ function showCrimeData() {
             });
         };
     })
-        // dataDisplay.innerHTML = '<p>Please select a valid state or UT.</p>';
 }
 
 
