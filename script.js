@@ -82,7 +82,7 @@ function showCrimeData() {
                 tooltipDiv.style.display = 'none';
             });
         };
-    }
+    })
         // dataDisplay.innerHTML = '<p>Please select a valid state or UT.</p>';
 }
 
