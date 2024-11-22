@@ -1,5 +1,3 @@
-/* styles.css */
-
 /* General styling */
 body {
     font-family: Arial, sans-serif;
@@ -11,6 +9,10 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    background-image: url('https://i.imgur.com/uRpr35t.jpeg'); /* Your background image */
+    background-size: cover;
+    background-position: center;
+    animation: fadeIn 4s ease-in-out forwards;
 }
 
 .container {
@@ -18,7 +20,7 @@ body {
     max-width: 600px;
     margin: 20px;
     padding: 20px;
-    background-color: #fff;
+    background-color: rgba(255, 255, 255, 0.8); /* White with opacity of 0.8 (80% opacity) */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
 }
@@ -62,137 +64,16 @@ canvas {
     display: none;
     pointer-events: none;
     white-space: nowrap;
-    z-index: 10;
+    z-index: 10;
 }
-{
-    "Andaman and Nicobar Islands": {
-        "description": "Crime statistics for Andaman and Nicobar Islands.",
-        "image": "path_to_image",
-        "coordinates": { "x": 10, "y": 50 },
-        "tooltip": "Overview of crimes in Andaman and Nicobar Islands",
-        "mapTooltip": "Andaman and Nicobar Islands Crime Overview",
-        "details": {
-            "accidents": 50,
-            "murders": 5,
-            "thefts": 100,
-            "cybercrimes": 20
-        }
-    },
-    "Andhra Pradesh": {
-        "description": "Crime statistics for Andhra Pradesh.",
-        "image": "path_to_image",
-        "coordinates": { "x": 60, "y": 60 },
-        "tooltip": "Overview of crimes in Andhra Pradesh",
-        "mapTooltip": "Andhra Pradesh Crime Overview",
-        "details": {
-            "accidents": 600,
-            "murders": 70,
-            "thefts": 900,
-            "cybercrimes": 100
-        }
-    },
-    "Arunachal Pradesh": {
-        "description": "Crime statistics for Arunachal Pradesh.",
-        "image": "path_to_image",
-        "coordinates": { "x": 70, "y": 20 },
-        "tooltip": "Overview of crimes in Arunachal Pradesh",
-        "mapTooltip": "Arunachal Pradesh Crime Overview",
-        "details": {
-            "accidents": 100,
-            "murders": 10,
-            "thefts": 150,
-            "cybercrimes": 25
-        }
-    },
-    "Assam": {
-        "description": "Crime statistics for Assam.",
-        "image": "path_to_image",
-        "coordinates": { "x": 80, "y": 30 },
-        "tooltip": "Overview of crimes in Assam",
-        "mapTooltip": "Assam Crime Overview",
-        "details": {
-            "accidents": 800,
-            "murders": 90,
-            "thefts": 1200,
-            "cybercrimes": 150
-        }
-    },
-    "Bihar": {
-        "description": "Crime statistics for Bihar.",
-        "image": "path_to_image",
-        "coordinates": { "x": 90, "y": 40 },
-        "tooltip": "Overview of crimes in Bihar",
-        "mapTooltip": "Bihar Crime Overview",
-        "details": {
-            "accidents": 1500,
-            "murders": 200,
-            "thefts": 1800,
-            "cybercrimes": 250
-        }
-    },
-    "Chandigarh": {
-        "description": "Crime statistics for Chandigarh.",
-        "image": "path_to_image",
-        "coordinates": { "x": 100, "y": 50 },
-        "tooltip": "Overview of crimes in Chandigarh",
-        "mapTooltip": "Chandigarh Crime Overview",
-        "details": {
-            "accidents": 300,
-            "murders": 30,
-            "thefts": 400,
-            "cybercrimes": 50
-        }
-    },
-    "Chhattisgarh": {
-        "description": "Crime statistics for Chhattisgarh.",
-        "image": "path_to_image",
-        "coordinates": { "x": 110, "y": 60 },
-        "tooltip": "Overview of crimes in Chhattisgarh",
-        "mapTooltip": "Chhattisgarh Crime Overview",
-        "details": {
-            "accidents": 700,
-            "murders": 100,
-            "thefts": 800,
-            "cybercrimes": 120
-        }
-    },
-    "Dadra and Nagar Haveli and Daman and Diu": {
-        "description": "Crime statistics for Dadra and Nagar Haveli and Daman and Diu.",
-        "image": "path_to_image",
-        "coordinates": { "x": 120, "y": 20 },
-        "tooltip": "Overview of crimes in Dadra and Nagar Haveli and Daman and Diu",
-        "mapTooltip": "Dadra and Nagar Haveli and Daman and Diu Crime Overview",
-        "details": {
-            "accidents": 200,
-            "murders": 20,
-            "thefts": 250,
-            "cybercrimes": 30
-        }
-    },
-    "Delhi": {
-        "description": "Delhi has significant rates of violent crime.",
-        "image": "https://images.app.goo.gl/pxX6Mb4d8PPnwtsWA",
-        "coordinates": { "x": 160, "y": 90 },
-        "tooltip": "Violent crime hotspot",
-        "mapTooltip": "Delhi State Crime Overview",
-        "details": {
-            "Rape": 1212,
-            "accidents": 2500,
-            "murders(2020 to 2022)": 1440,
-            "thefts": 205,545 
-        }
-    },
-    "Maharashtra": {
-        "description": "Maharashtra has high crime rates related to theft and cybercrime.",
-        "image": "https://wheremaps.com/wp-content/uploads/2023/04/Maharashtra-Division-Map-768x637.png",
-        "coordinates": { "x": 15, "y": 10 },
-        "tooltip": "Theft and cybercrime hotspot",
-        "mapTooltip": "Maharashtra State Crime Overview",
-        "details": {
-            "accidents": 5000,
-            "murders": 300,
-            "thefts": 7000,
-            "cybercrimes": 2000
-        }
+
+/* Optional: Fade-in animation for container */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
     }
 }
+
